@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>FaceApp</title>
+    <script defer src="face-api.min.js"></script>
+    <script defer src="script.js"></script>
+    <style>
+        #video-container {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        canvas {
+            position: absolute;
+        }
+
+        #expression-container {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper blue darken-3">
+            <a href="#" class="center brand-logo">FaceApp</a>
+        </div>
+    </nav>
+
+    <div class="video-container" id="video-container">
+        <video id="video" width="720" height="560" autoplay muted></video>
+    </div>
+    <div class="container" id="expression-container">
+        <ul class="collection" id="expressions-list"></ul>
+    </div>
+</body>
+</html>
