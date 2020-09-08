@@ -9,11 +9,11 @@ Promise.all([
 ]).then(startVideo)
 
 function startVideo() {
-  navigator.getUserMedia(
+  navigator.mediaDevices.getUserMedia(
     { video: {} },
     stream => video.srcObject = stream,
     err => console.error(err)
-  )
+  );
 }
 
 video.addEventListener('play', () => {
@@ -23,16 +23,16 @@ video.addEventListener('play', () => {
   faceapi.matchDimensions(canvas, displaySize)
   setInterval(async () => {
     const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
-    const resizedDetections = faceapi.resizeResults(detections, displaySize)
+    const resizedDetections = faceapi.resizeResults(detections, displaySize);
     const expressionObj = detections[0] ? detections[0].expressions : {};
     const expressionKeys = Object.keys(expressionObj);
     expressionKeys.sort((a,b) => {
-        return expressionObj[b] - expressionObj[a]
+        return expressionObj[b] - expressionObj[a];
     });
 
     if (expressionsList) {
         while (expressionsList.childNodes.length > 0) {
-            expressionsList.removeChild(expressionsList.childNodes[0])
+            expressionsList.removeChild(expressionsList.childNodes[0]);
         }
     }
     
@@ -48,5 +48,5 @@ video.addEventListener('play', () => {
     faceapi.draw.drawDetections(canvas, resizedDetections)
     faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
     faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
-  }, 1000)
+  }, 1000);
 })
